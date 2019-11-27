@@ -15,7 +15,7 @@ export default {
 //375*600 区域设定
 </script>
 
-<style>
+<style lang="scss">
 #app {
   width:100vw;
   height:100vh;
@@ -23,5 +23,8 @@ export default {
   margin:0 auto;
   font-size: 1.6em;
   overflow: hidden;
+  .el-container{
+    height:100%;
+  }
 }
 </style>
