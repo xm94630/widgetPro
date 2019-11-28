@@ -21,7 +21,6 @@ export default {
   height:100vh;
   background: #f3f3f3;
   margin:0 auto;
-  font-size: 1.6em;
   overflow: hidden;
   .el-container{
     height:100%;

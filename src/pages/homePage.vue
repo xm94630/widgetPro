@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <el-header>插件生成系统</el-header>
+    <el-header height="40px">插件生成系统</el-header>
     <el-container>
 
       <el-aside width="200px">
@@ -81,36 +81,36 @@ export default {
 
 <style scoped lang="scss">
 .el-header, .el-footer {
-    background-color: #B3C0D1;
-    color: #333;
-    text-align: center;
-    line-height: 60px;
-  }
+  background-color: #25292d;
+  text-align: right;
+  line-height: 40px;
+  border-bottom: solid 1px #555;
+  color: #fff;
+  font-size: 16px;
+}
   
-  .el-aside {
-    background-color: #D3DCE6;
-    color: #333;
-    text-align: left;
-    line-height: 200px;
-  }
-  
-  .el-main {
-    background-color: #E9EEF3;
-    color: #333;
-    text-align: center;
-    line-height: 160px;
-  }
-  
-  body > .el-container {
-    margin-bottom: 40px;
-  }
-  
-  .el-container:nth-child(5) .el-aside,
-  .el-container:nth-child(6) .el-aside {
-    line-height: 260px;
-  }
-  
-  .el-container:nth-child(7) .el-aside {
-    line-height: 320px;
-  }
+.el-aside {
+  background-color: #1b1e25;
+  color: #333;
+  text-align: left;
+  line-height: 200px;
+}
+
+.el-main {
+  background-color: #25292d;
+  color:#afbcc6;
+}
+
+body > .el-container {
+  margin-bottom: 40px;
+}
+
+.el-container:nth-child(5) .el-aside,
+.el-container:nth-child(6) .el-aside {
+  line-height: 260px;
+}
+
+.el-container:nth-child(7) .el-aside {
+  line-height: 320px;
+}
 </style>
