@@ -15,14 +15,21 @@
           text-color="#999"
           active-text-color="#409EFF"
         >
+          <el-menu-item index="/homePage/configurator">
+            <i class="el-icon-setting"></i>
+            <span slot="title">默认配置器</span>
+          </el-menu-item>
+          <el-menu-item index="/homePage/widget">
+            <i class="el-icon-video-camera"></i>
+            <span slot="title">插件预览</span>
+          </el-menu-item>
           <el-submenu index="/homePage">
             <template slot="title">
-              <i class="el-icon-view"></i>
-              <span>插件开发</span>
+              <i class="el-icon-menu"></i>
+              <span>已保存配置器</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="/homePage/configurator">默认配置器</el-menu-item>
-              <el-menu-item index="/homePage/widget">插件预览</el-menu-item>
+              <el-menu-item index="/homePage/widget">配置器A</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 
@@ -83,7 +90,7 @@ export default {
   .el-aside {
     background-color: #D3DCE6;
     color: #333;
-    text-align: center;
+    text-align: left;
     line-height: 200px;
   }
   
