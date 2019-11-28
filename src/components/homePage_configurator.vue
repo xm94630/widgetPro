@@ -4,13 +4,23 @@
       <el-row :gutter="20">
         <el-col :span="8">
           <div class="dataBox">
-            数据源
+            <div>数据源（支持数字、数组、JSON、JSON数组）</div>
             <el-input
+              @input="changeFun"
+              @change="changeFun"
               ref="xxx"
               type="textarea"
               :rows="10"
-              v-model="a">
-      </el-input>
+              v-model="defaultText">
+            </el-input>
+            <div class="infoBox" v-if="dataSourceIsChecked">
+              <i class="el-icon-success successInfo"></i>
+              数据格式正确!
+            </div>
+            <div class="infoBox" v-else>
+              <i class="el-icon-error errorInfo"></i>
+              数据格式验证失败!
+            </div>
           </div>
         </el-col>
         <el-col :span="16">
@@ -33,10 +43,26 @@ export default {
   },
   data:function(){
     return{
-      a:123123
+      defaultText:'[{\n  "name":"Hallen",\n  "age":18\n},{\n  "name":"John",\n  "age":20\n}]',
+      dataSource:undefined,
+      dataSourceIsChecked:true,
     }
   },
   methods:{
+    checkFun(data){
+      try{
+        this.dataSource = JSON.parse(data);
+      }catch(e){
+        this.dataSource = undefined;
+        this.dataSourceIsChecked=false;
+      }
+    },
+    changeFun(data){
+      this.checkFun(data);
+      if(this.dataSource){
+        this.dataSourceIsChecked=true;
+      }
+    }
   },
   mounted(){
 
@@ -58,6 +84,21 @@ export default {
     }
     .configBox{
       height:100%;
+    }
+    .infoBox{
+      display: flex;
+      align-items: center;
+      margin-top:10px;
+      .successInfo{
+        font-size: 25px;
+        color: forestgreen;
+        margin-right:10px;
+      }
+      .errorInfo{
+        font-size: 25px;
+        color: firebrick;
+        margin-right:10px;
+      }
     }
   }
   .btnBar{
@@ -82,13 +123,13 @@ export default {
 <style lang="scss">
 .dataBox{
   .el-textarea{
-    height: 100%;
+    height: 60%;
     //这个样式的改变，一定要放到无scoped限定的样式中
     .el-textarea__inner{
       border:solid 1px #00baff;
       background: #333;
       color:#888;
-      height: 80%;
+      height: 100%;
     }
   }
 }
