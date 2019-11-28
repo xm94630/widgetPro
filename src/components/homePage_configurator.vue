@@ -3,7 +3,15 @@
     <div class="conBox">
       <el-row :gutter="20">
         <el-col :span="8">
-          <div class="dataBox">数据源</div>
+          <div class="dataBox">
+            数据源
+            <el-input
+              ref="xxx"
+              type="textarea"
+              :rows="10"
+              v-model="a">
+      </el-input>
+          </div>
         </el-col>
         <el-col :span="16">
           <div class="configBox">样式</div>
@@ -25,6 +33,7 @@ export default {
   },
   data:function(){
     return{
+      a:123123
     }
   },
   methods:{
@@ -44,6 +53,8 @@ export default {
     .dataBox{
       height:100%;
       border-right:solid 1px #555;
+      padding-right: 20px;
+      box-sizing: border-box;
     }
     .configBox{
       height:100%;
@@ -66,6 +77,19 @@ export default {
     height: 100%;
   }
 }
+</style>
 
-
+<style lang="scss">
+.dataBox{
+  .el-textarea{
+    height: 100%;
+    //这个样式的改变，一定要放到无scoped限定的样式中
+    .el-textarea__inner{
+      border:solid 1px #00baff;
+      background: #333;
+      color:#888;
+      height: 80%;
+    }
+  }
+}
 </style>
