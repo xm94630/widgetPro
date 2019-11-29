@@ -8,7 +8,7 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
   routes:[
-    {path:'/',redirect: '/homePage'},
+    {path:'/',redirect: '/homePage/configurator'},
     {
       path:'/homePage',
       component:homePage,

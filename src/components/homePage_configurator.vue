@@ -7,7 +7,6 @@
             <div>数据源（支持数字、数组、JSON、JSON数组）</div>
             <el-input
               @input="changeFun"
-              @change="changeFun"
               ref="xxx"
               type="textarea"
               :rows="10"
@@ -24,7 +23,23 @@
           </div>
         </el-col>
         <el-col :span="16">
-          <div class="configBox">样式</div>
+          <div class="customConfigBox">
+            自定义配置（支持对象格式）
+            <el-input
+              @input="change2Fun"
+              type="textarea"
+              :rows="10"
+              v-model="default2Text">  
+            </el-input>
+            <div class="infoBox" v-if="dataCustomIsChecked">
+              <i class="el-icon-success successInfo"></i>
+              数据格式正确!
+            </div>
+            <div class="infoBox" v-else>
+              <i class="el-icon-error errorInfo"></i>
+              数据格式验证失败!
+            </div>
+          </div>
         </el-col>
       </el-row>
     </div>
@@ -44,8 +59,27 @@ export default {
   data:function(){
     return{
       defaultText:'[{\n  "name":"Hallen",\n  "age":18\n},{\n  "name":"John",\n  "age":20\n}]',
+      default2Text:
+'{\n\
+  "css":{\n\
+    "width":200,\n\
+    "height":300,\n\
+    "background":"red"\n\
+  },\n\
+  "widget":{\n\
+    "title":{\n\
+      "text":"标题",\n\
+      "color":"green"\n\
+    },\n\
+    "content":{\n\
+      "color":"blue"\n\
+    }\n\
+  }\n\
+}',
       dataSource:undefined,
       dataSourceIsChecked:true,
+      dataCustom:undefined,
+      dataCustomIsChecked:true,
     }
   },
   methods:{
@@ -57,10 +91,24 @@ export default {
         this.dataSourceIsChecked=false;
       }
     },
+    check2Fun(data){
+      try{
+        this.dataCustom = JSON.parse(data);
+      }catch(e){
+        this.dataCustom = undefined;
+        this.dataCustomIsChecked=false;
+      }
+    },
     changeFun(data){
       this.checkFun(data);
       if(this.dataSource){
         this.dataSourceIsChecked=true;
+      }
+    },
+    change2Fun(data){
+      this.check2Fun(data);
+      if(this.dataCustom){
+        this.dataCustomIsChecked=true;
       }
     }
   },
@@ -82,7 +130,7 @@ export default {
       padding-right: 20px;
       box-sizing: border-box;
     }
-    .configBox{
+    .customConfigBox{
       height:100%;
     }
     .infoBox{
@@ -121,16 +169,16 @@ export default {
 </style>
 
 <style lang="scss">
-.dataBox{
-  .el-textarea{
-    height: 60%;
-    //这个样式的改变，一定要放到无scoped限定的样式中
-    .el-textarea__inner{
-      border:solid 1px #00baff;
-      background: #333;
-      color:#888;
-      height: 100%;
-    }
+
+.el-textarea{
+  height: 60%;
+  //这个样式的改变，一定要放到无scoped限定的样式中
+  .el-textarea__inner{
+    border:solid 1px #00baff;
+    background: #333;
+    color:#888;
+    height: 100%;
   }
 }
+
 </style>
